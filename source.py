@@ -99,7 +99,8 @@ while run:
 
         screen.blit(text_surface, (200, 0))
         screen.blit(text_surface_2, (600, 0))
-
+     
+    
     if ball.colliderect(player):
         ball_speed_x = -ball_speed_x
         paddle.play() 
@@ -110,14 +111,18 @@ while run:
 
     ball_pos_y += ball_speed_y
     ball_pos_x += ball_speed_x
-    # print(ball_pos_x, ball_pos_y)
+    #
+
+       # print(ball_pos_x, ball_pos_y)
 
     # Keyboard Input
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_w]:
-        player_pos_y -= player_speed
-    elif keys[pygame.K_s]:
-        player_pos_y += player_speed
+    def keyboard_input():
+        global player_pos_y
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_w]:
+            player_pos_y -= player_speed
+        elif keys[pygame.K_s]:
+            player_pos_y += player_speed
 
     # collision Player 1
     if player_pos_y < 0:
@@ -126,15 +131,19 @@ while run:
         player_pos_y = 560
 
     # Player_2
-    easy_mode = 2
-    medium_mode = 3
-    hard_mode = 5 
+    def paddle_2_controls():
+        global ball_pos_y,player_y_2
+        easy_mode = 2
+        medium_mode = 3
+        hard_mode = 5 
 
-    if ball_pos_y > player_y_2:
-        player_y_2 += hard_mode
-    elif ball_pos_y < player_y_2:
-        player_y_2 -= hard_mode
+        if ball_pos_y > player_y_2:
+            player_y_2 += hard_mode
+        elif ball_pos_y < player_y_2:
+            player_y_2 -= hard_mode
 
+    paddle_2_controls()
+    keyboard_input()
     drawing_text()
     func_netz()
     pygame.display.flip()
