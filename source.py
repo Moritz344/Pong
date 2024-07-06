@@ -73,30 +73,8 @@ while run:
     ball = pygame.draw.ellipse(screen, weiss, [ball_pos_x, ball_pos_y, ball_size, ball_size])
 
     def func_netz():
-        netz_pos_x = x // 2
-        netz_pos_y = -6
-        netz_1 = pygame.draw.rect(screen, weiss, [netz_pos_x, netz_pos_y, 10, 30])
-
-        netz_pos_y_2 = 100
-        netz_2 = pygame.draw.rect(screen, weiss, [netz_pos_x, netz_pos_y_2, 10, 30])
-
-        netz_pos_y_3 = 200
-        netz_3 = pygame.draw.rect(screen, weiss, [netz_pos_x, netz_pos_y_3, 10, 30])
-
-        netz_pos_y_4 = 300
-        netz_4 = pygame.draw.rect(screen, weiss, [netz_pos_x, netz_pos_y_4, 10, 30])
-
-        netz_pos_y_5 = 400
-        netz_5 = pygame.draw.rect(screen, weiss, [netz_pos_x, netz_pos_y_5, 10, 30])
-
-        netz_pos_y_6 = 500
-        netz_6 = pygame.draw.rect(screen, weiss, [netz_pos_x, netz_pos_y_6, 10, 30])
-
-        netz_pos_y_7 = 600
-        netz_7 = pygame.draw.rect(screen, weiss, [netz_pos_x, netz_pos_y_7, 10, 30])
-
-        netz_pos_y_8 = 583
-        netz_8 = pygame.draw.rect(screen, weiss, [netz_pos_x, netz_pos_y_8, 10, 30])
+       for i in range(10,600,40):
+           pygame.draw.rect(screen,weiss,(x // 2,i,5,20)) 
 
     # ball
 
