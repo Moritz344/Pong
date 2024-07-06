@@ -33,9 +33,9 @@ score_2 = 0
 
 # sfx
 pygame.init()
-paddle = pygame.mixer.Sound("Pong/paddle.mp3")
-wall = pygame.mixer.Sound("Pong/wall.mp3")
-score = pygame.mixer.Sound("Pong/score.mp3")
+paddle = pygame.mixer.Sound("paddle.mp3")
+wall = pygame.mixer.Sound("wall.mp3")
+score = pygame.mixer.Sound("score.mp3")
 
 # TEXT
 pygame.font.init()
