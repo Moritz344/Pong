@@ -2,9 +2,6 @@ import pygame
 import random
 import time
 
-# TODO: NETZ
-# TODO: TEXT ALS SCORE WENN MÖGLICH???
-# TODO: SFX
 
 x = 800
 y = 600
@@ -39,7 +36,7 @@ score = pygame.mixer.Sound("score.mp3")
 
 # TEXT
 pygame.font.init()
-font = pygame.font.SysFont("Open Sans", 50)
+font = pygame.font.SysFont("Minecraft", 50)
 text_farbe = (255, 255, 255)
 
 # farben
@@ -76,8 +73,7 @@ while run:
        for i in range(10,600,40):
            pygame.draw.rect(screen,weiss,(x // 2,i,5,20)) 
 
-    # ball
-
+    # ball collision with objects
     if ball_pos_x < 0 or ball_pos_x > x:
         ball_speed_x *= -1
         score.play()
@@ -91,7 +87,12 @@ while run:
     elif ball_pos_x > x:
         score_1 += 1
         print("Punkt für Spieler 1:", score_1)
-
+    
+    if score_1 == 10 or score_2 == 10:
+        print("Round over!")
+        score_1 = 0
+        score_2 = 0
+    
     # drawing the Text
     def drawing_text():
         text_surface = font.render(f"{score_1}", False, (255, 255, 255))
@@ -99,19 +100,20 @@ while run:
 
         screen.blit(text_surface, (200, 0))
         screen.blit(text_surface_2, (600, 0))
-     
-    
-    if ball.colliderect(player):
-        ball_speed_x = -ball_speed_x
-        paddle.play() 
 
-    elif ball.colliderect(player_2):
-        ball_speed_x = -ball_speed_x
-        paddle.play() 
+    # ball collision with player
+    def ball_collision():  
+        global ball_speed_x,ball_pos_x,ball_pos_y
+        if ball.colliderect(player):
+            ball_speed_x = -ball_speed_x
+            paddle.play() 
 
-    ball_pos_y += ball_speed_y
-    ball_pos_x += ball_speed_x
-    #
+        elif ball.colliderect(player_2):
+            ball_speed_x = -ball_speed_x
+            paddle.play() 
+
+        ball_pos_y += ball_speed_y
+        ball_pos_x += ball_speed_x
 
        # print(ball_pos_x, ball_pos_y)
 
@@ -125,27 +127,37 @@ while run:
             player_pos_y += player_speed
 
     # collision Player 1
-    if player_pos_y < 0:
-        player_pos_y = 0
-    elif player_pos_y > 560:
-        player_pos_y = 560
+    def paddle_collision():
+        global player_pos_y
+        if player_pos_y < 0:
+            player_pos_y = 0
+        elif player_pos_y > 560:
+            player_pos_y = 560
 
+    
+   
+   
     # Player_2
     def paddle_2_controls():
         global ball_pos_y,player_y_2
         easy_mode = 2
-        medium_mode = 3
+        medium_mode = 4.8
         hard_mode = 5 
 
         if ball_pos_y > player_y_2:
-            player_y_2 += hard_mode
+            player_y_2 += medium_mode 
         elif ball_pos_y < player_y_2:
-            player_y_2 -= hard_mode
+            player_y_2 -= medium_mode 
 
-    paddle_2_controls()
-    keyboard_input()
-    drawing_text()
-    func_netz()
+    if __name__ == "__main__":
+        ball_collision()
+        paddle_collision()
+        paddle_2_controls()
+        keyboard_input()
+        drawing_text()
+        func_netz()
+
+
     pygame.display.flip()
     clock.tick(60)
 
