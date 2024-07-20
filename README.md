@@ -4,7 +4,7 @@
 
 # Usage
 ```
-git clone https://github.com/yourusername/your-repo-name.git
+git clone https://github.com/yourusername/
 ```
 # History of Pong
 Pong, released in 1972 by Atari Inc., is often considered one of the earliest arcade video games and the first commercially successful one. Its simple yet engaging gameplay involves two players controlling paddles to hit a ball back and forth, emulating a table tennis game.
